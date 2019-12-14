@@ -1,0 +1,108 @@
+.Homepage {
+  height: 100vh;
+}
+
+.Homepage-nav {
+  height: 15%;
+  position: relative;
+  border: .2rem solid #c2bfbf;
+}
+
+.Homepage-nav-logo {
+  position: absolute;
+  top: 50%;
+  left: 12%;
+  transform: translate(-50%, -50%);
+}
+
+.Homepage-nav-logo-div {
+  background-color: blue;
+  float: left;
+  height: 5rem;
+  width: 5rem;
+}
+
+.Homepage-nav-logo-text {
+  font-size: 3.8rem;
+  float: right;
+  margin-left: 1.5rem;
+  letter-spacing: 0.2rem;
+}
+
+.Homepage-nav-signup {
+  position: absolute;
+  top: 50%;
+  left: 76%;
+  transform: translate(0%, -50%);
+}
+
+.Homepage-nav-text {
+  position: absolute;
+  top: 45%;
+  left: 83%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  padding-top: 1.2rem;
+}
+
+.Homepage-nav-btn {
+  position: absolute;
+  top: 50%;
+  left: 92%;
+  transform: translate(-50%, -50%);
+  background-color: blue;
+  padding: .5rem;
+  color: white;
+  font-size: 2.2rem;
+  border-radius: 1.4rem;
+  float: right;
+  padding: 1rem;;
+  margin-left: 3rem;
+}
+
+.Homepage-section {
+  height: 85%;
+}
+
+.Homepage-section-text {
+  height: 100%;
+  width: 30%;
+  float: left;
+  position: relative;
+  background-color: #c2bfbf;
+}
+
+.Homepage-section-text-text {
+  font-size: 6rem;
+  position: absolute;
+  top: 36%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+.Homepage-section-text-btn {
+  position: absolute;
+  top: 80%;
+  left: 32%;
+  transform: translate(-50%, -50%);
+  background-color: blue;
+  padding: 3rem;
+  font-size: 2.2rem;
+  color: white;
+  border-radius: 1rem;
+}
+
+.Homepage-section-signin {
+  height: 100%;
+  width: 70%;
+  float: right;
+  position: relative;
+}
+
+.Homepage-section-signin-form {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 2rem;
+}
