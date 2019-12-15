@@ -23,7 +23,8 @@
 }
 
 .Homepage-nav-logo-text {
-  font-size: 3.8rem;
+  font-size: 4.5rem;
+  font-weight: normal;
   float: right;
   margin-left: 1.5rem;
   letter-spacing: 0.2rem;
@@ -38,10 +39,10 @@
 
 .Homepage-nav-text {
   position: absolute;
-  top: 45%;
+  top: 47%;
   left: 83%;
   transform: translate(-50%, -50%);
-  font-size: 2rem;
+  font-size: 2.4rem;
   padding-top: 1.2rem;
 }
 
@@ -53,7 +54,8 @@
   background-color: blue;
   padding: .5rem;
   color: white;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
+  letter-spacing: .15rem;
   border-radius: 1.4rem;
   float: right;
   padding: 1rem;;
@@ -74,6 +76,7 @@
 
 .Homepage-section-text-text {
   font-size: 6rem;
+  font-weight: normal;
   position: absolute;
   top: 36%;
   left: 45%;
@@ -88,6 +91,8 @@
   background-color: blue;
   padding: 3rem;
   font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: .3rem;
   color: white;
   border-radius: 1rem;
 }
@@ -101,8 +106,23 @@
 
 .Homepage-section-signin-form {
   position: absolute;
-  top: 40%;
-  left: 50%;
+  top: 47%;
+  left: 54%;
   transform: translate(-50%, -50%);
   margin-bottom: 2rem;
+}
+
+.Homepage-section-signin-form-line {
+  width: 60rem;
+  margin-bottom: 6rem;
+}
+
+.Homepage-section-signin-form-btn {
+  width: 100%;
+  background-color: blue;
+  border-radius: 2rem;
+  color: white;
+  font-size: 4rem;
+  padding: 2rem;
+  letter-spacing: .2rem;
 }
