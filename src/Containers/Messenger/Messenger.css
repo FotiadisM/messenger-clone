@@ -1,0 +1,146 @@
+.Messenger {
+    height: 100vh;
+}
+
+.Messenger-nav {
+  height: 15%;
+  position: relative;
+}
+
+.Messenger-nav-logo {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+  background-color: blue;
+  height: 5rem;
+  width: 5rem;
+}
+
+.Messenger-nav-logo-text {
+  position: absolute;
+  top: 50%;
+  left: 13%;
+  transform: translate(-50%, -50%);
+  font-size: 4.5rem;
+  font-weight: normal;
+  margin-left: 1.5rem;
+  letter-spacing: 0.2rem;
+}
+
+.Messenger-section {
+  height: 85%;
+}
+
+.Messenger-section-friendsList {
+  height: 100%;
+  width: 20%;
+  float: left;
+  border-right: .2rem solid gray;
+  border-top: .2rem solid gray;
+}
+
+.Messenger-section-friendsList-gray {
+  height: 12%;
+  width: 100%;
+  background-color: gray;
+  position: relative;
+}
+
+.Messenger-section-friendsList-gray-input {
+  height: 4rem;
+  width: 33rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.4rem;
+  text-align: center;
+  border-radius: 2rem;
+}
+
+.Messenger-section-friendsList-list {
+  height: 88%;
+}
+
+.Messenger-section-message {
+  height: 100%;
+  width: 60%;
+  float: left;
+  border-top: .2rem solid gray;
+}
+
+.Messenger-section-profile {
+  height: 100%;
+  width: 20%;
+  float: right;
+  position: relative;
+  border-left: .2rem solid gray;
+  border-top: .2rem solid gray;
+}
+
+.Messenger-section-profile-picture {
+  height: 22rem;
+  width: 22rem;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 100rem;
+  background-color: blue;
+}
+
+.Messenger-section-profile-status {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: gray;
+}
+
+.Messenger-section-profile-name {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+}
+
+.Messenger-section-profile-blogs {
+  position: absolute;
+  top: 66%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.8rem;
+  color: blue;
+  font-weight: 500;
+}
+
+.Messenger-section-profile-settings {
+  position: absolute;
+  top: 73%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.8rem;
+  color: blue;
+  font-weight: 500;
+}
+
+.Messenger-section-profile-signOut {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.8rem;
+  color: blue;
+  font-weight: 500;
+}
+
+.Messenger-section-profile-delete {
+  position: absolute;
+  top: 91%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+}
