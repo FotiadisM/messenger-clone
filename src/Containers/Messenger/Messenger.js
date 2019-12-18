@@ -1,9 +1,63 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FriendsList from '../../Components/FriendsList/FriendsList';
+import UserList from '../../Components/UserList/UserList';
 import './Messenger.css';
 
 import { setID, setName, setStatus } from '../../Actions/actions/userActions';
+
+const frnames = [
+  {
+    name: "Fotiadis Michail"
+  },
+  {
+    name: "Tatas Michail"
+  },
+  {
+    name: "Dalianis Ioannis"
+  },
+  {
+    name: "Mister Jonson"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  },
+  {
+    name: "Skordopsoma"
+  }
+]
 
 const mapStateToProps = (state) => {
   return {
@@ -24,14 +78,7 @@ class Messenger extends Component {
   render() {
     const { setRoute } = this.props;
     const { name, status } = this.props.user;
-    const friendsName = {
-      fr1: {
-        name: 'hey'
-      },
-      fr2: {
-        name: 'helloo'
-      }
-    }
+
     return (
       <div className='Messenger'>
         <div className='Messenger-nav'>
@@ -44,7 +91,7 @@ class Messenger extends Component {
               <input className='Messenger-section-friendsList-gray-input' type='text' placeholder='Search for people'/>
             </div>
             <div className='Messenger-section-friendsList-list'>
-              <FriendsList name={friendsName}/>
+              <UserList users={frnames}/>
             </div>
           </div>
           <div className='Messenger-section-message'>
