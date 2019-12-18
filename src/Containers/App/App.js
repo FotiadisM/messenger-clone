@@ -6,36 +6,60 @@ import './App.css';
 
 import { setRoute } from '../../Actions/actions/routeActions';
 import { setEmail, setPassword } from '../../Actions/actions/signinActions';
+import { loadUser, setUserFriends } from '../../Actions/actions/userActions';
 
 const mapStateToProps = (state) => {
   return {
     route: state.route,
-    signin: state.signin
+    signin: state.signin,
+    user: state.user
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setRoute: (route) => dispatch(setRoute(route)),
-    setEmail: (text) => dispatch(setEmail(text)),
-    setPassword: (text) => dispatch(setPassword(text))
+    setEmail: (event) => dispatch(setEmail(event.target.value)),
+    setPassword: (event) => dispatch(setPassword(event.target.value)),
+    loadUser: (user) => dispatch(loadUser(user)),
+    setUserFriends: (friends) => dispatch(setUserFriends(friends))
   };
 };
 
 class App extends Component {
 
+  onSignIn = () => {
+    fetch('https://jsonplaceholder.typicode.com/users', {
+      method: 'get'
+    })
+    .then(response => response.json())
+    .then(friends => {
+     this.props.loadUser(friends[4]);
+     this.props.setUserFriends(friends);
+     this.props.setRoute('Messenger');
+    })
+  }
+
   render() {
-    if(this.props.route.route === 'Homepage') {
+    const { setRoute , setEmail, setPassword} = this.props;
+    const route = this.props.route.route;
+    const user = this.props.user;
+
+    if(route === 'Homepage') {
       return (
          <div className='App'>
-            <Homepage setRoute={this.props.setRoute}/>
+            <Homepage
+            setRoute={setRoute}
+            onSignIn={this.onSignIn}
+            setEmail={setEmail}
+            setPassword={setPassword}/>
         </div>
       );
     }
-    if(this.props.route.route === 'Messenger') {
+    if(route === 'Messenger') {
       return (
          <div className='App'>
-           <Messenger setRoute={this.props.setRoute}/>
+           <Messenger setRoute={setRoute} user={user}/>
         </div>
       );
     }

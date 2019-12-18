@@ -1,11 +1,11 @@
-.User {
+.Friend {
   height: 12%;
   width: 100%;
   border-bottom: .1rem solid gray;
   position: relative;
 }
 
-.User-picture {
+.Friend-picture {
   position: absolute;
   height: 6rem;
   width: 6rem;
@@ -16,7 +16,7 @@
   background-color: black;
 }
 
-.User-name {
+.Friend-name {
   position: absolute;
   top: 50%;
   left: 62%;

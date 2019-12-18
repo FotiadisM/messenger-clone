@@ -1,17 +1,29 @@
 import {
+  USER_LOAD_USER,
+  USER_CHANGE_ID,
   USER_CHANGE_NAME,
   USER_CHANGE_STATUS,
-  USER_CHANGE_ID
+  USER_CHANGE_FRIENDS
 } from '../Actions/constants'
 
 const initialState = {
-  id: 123,
-  name: 'Fotiadis Michail',
-  status: 'Active'
+  id: 0,
+  name: '',
+  status: 'Active',
+  friends: []
 }
 
 export const changeUserInfo = (state = initialState, action = {}) => {
   switch(action.type) {
+    case USER_LOAD_USER:
+      return {
+        ...state,
+        id: action.payload.id,
+        name: action.payload.name,
+        // status: action.payload.status,
+        friends: action.payload.friends
+      }
+
     case USER_CHANGE_ID:
       return {
         ...state,
@@ -27,6 +39,11 @@ export const changeUserInfo = (state = initialState, action = {}) => {
         ...state,
         status: action.payload
       };
+    case USER_CHANGE_FRIENDS:
+      return {
+        ...state,
+        friends: action.payload
+        };
     default:
       return state;
   }

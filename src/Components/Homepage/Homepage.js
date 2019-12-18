@@ -2,7 +2,7 @@ import React from 'react';
 import InputForm from '../InputForm/InputForm'
 import './Homepage.css';
 
-const Homepage = ({ setRoute, setEmail, setPassword }) => {
+const Homepage = ({ setRoute, onSignIn, setEmail, setPassword,  }) => {
 
   return (
     <div className='Homepage'>
@@ -24,7 +24,7 @@ const Homepage = ({ setRoute, setEmail, setPassword }) => {
             <InputForm mFunction={setEmail} type='email' placeholder=' Email'></InputForm>
             <InputForm mFunction={setPassword} type='password' placeholder=' Password'></InputForm>
             <hr className='Homepage-section-signin-form-line'/>
-            <button className='btn Homepage-section-signin-form-btn' onClick={() => setRoute('Messenger')}>Sign In</button>
+            <button className='btn Homepage-section-signin-form-btn' onClick={onSignIn}>Sign In</button>
           </div>
         </div>
       </div>
