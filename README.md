@@ -1,5 +1,8 @@
 # Messenger-clone
 
+> This project uses React and CSS to recreate the Facebook Messenger web application. It is in its early stages. **THIS IS NOT AN OFFICIAL FACEBOOK PRODUCT NOR IS IT MAINTAINED BY ANY FACEBOOK EMPLOYEES.**
+
+
 ## Available Scripts
 
 In the project directory, you can run:

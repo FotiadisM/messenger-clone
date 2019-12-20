@@ -1,27 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FriendsList from '../../Components/FriendsList/FriendsList';
+import TextingPage from '../../Components/TextingPage/TextingPage';
 import './Messenger.css';
 
 import { setFriendsSearch } from '../../Actions/actions/inputActions';
+import { setUser } from '../../Actions/actions/textingActions';
 
 const mapStateToProps = (state) => {
   return {
-    input: state.input
+    input: state.input,
+    texting: state.texting
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setFriendsSearch: (event) => dispatch(setFriendsSearch(event.target.value))
+    setFriendsSearch: (event) => dispatch(setFriendsSearch(event.target.value)),
+    setTextingUser: (user) => dispatch(setUser(user))
   };
 };
 
 class Messenger extends Component {
 
   render() {
-    const { setRoute, user, setFriendsSearch } = this.props;
+    const { setRoute, user, setFriendsSearch, setTextingUser } = this.props;
     const friendsSearch = this.props.input.friendsSearch;
+    const textingUser = this.props.texting;
     const filteredFriends = user.friends.filter(user => {
       return user.name.toLocaleLowerCase().includes(friendsSearch.toLocaleLowerCase());
     })
@@ -42,11 +47,11 @@ class Messenger extends Component {
                 onChange={setFriendsSearch}/>
             </div>
             <div className='Messenger-section-friendsList-list'>
-              <FriendsList users={filteredFriends}/>
+              <FriendsList users={filteredFriends} setTextingUser={setTextingUser}/>
             </div>
           </div>
           <div className='Messenger-section-message'>
-
+            <TextingPage textingUser={textingUser}/>
           </div>
           <div className='Messenger-section-profile'>
             <div className='Messenger-section-profile-picture'></div>
