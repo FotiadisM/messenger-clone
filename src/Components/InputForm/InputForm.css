@@ -3,6 +3,7 @@
     width: 60rem;
     margin-bottom: 4.5rem;
     padding: 1rem;
+    padding-left: 2rem;
     border: .2rem solid blue;
     border-radius: 2rem;
 }

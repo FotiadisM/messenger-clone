@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FriendsList from '../../Components/FriendsList/FriendsList';
-import TextingPage from '../../Components/TextingPage/TextingPage';
+import ChatScreen from '../../Components/ChatScreen/ChatScreen';
 import './Messenger.css';
 
 import { setFriendsSearch } from '../../Actions/actions/inputActions';
@@ -27,6 +27,7 @@ class Messenger extends Component {
     const { setRoute, user, setFriendsSearch, setTextingUser } = this.props;
     const friendsSearch = this.props.input.friendsSearch;
     const textingUser = this.props.texting;
+
     const filteredFriends = user.friends.filter(user => {
       return user.name.toLocaleLowerCase().includes(friendsSearch.toLocaleLowerCase());
     })
@@ -51,7 +52,7 @@ class Messenger extends Component {
             </div>
           </div>
           <div className='Messenger-section-message'>
-            <TextingPage textingUser={textingUser}/>
+            <ChatScreen textingUser={textingUser}/>
           </div>
           <div className='Messenger-section-profile'>
             <div className='Messenger-section-profile-picture'></div>

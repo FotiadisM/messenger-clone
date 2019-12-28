@@ -1,49 +1,49 @@
-.TextingPage {
+.ChatScreen {
   height: 100%;
 }
 
-.TextingPage-user {
+.ChatScreen-user {
   height: 12%;
   border-bottom: .1rem solid gray;
   position: relative;
 }
 
-.TextingPage-user-picture {
+.ChatScreen-user-picture {
   height: 6rem;
   width: 6rem;
   position: absolute;
   top: 50%;
-  left: 40%;
+  left: 7%;
   transform: translate(-50%, -50%);
   background-color: black;
   border-radius: 100rem;
 }
 
-.TextingPage-user-name {
+.ChatScreen-user-name {
   font-size: 3.5rem;
   position: absolute;
   top: 50%;
-  left: 55%;
-  transform: translate(-50%, -50%);
+  left: 13%;
+  transform: translateY(-50%);
   color: black;
 }
 
-.TextingPage-main {
+.ChatScreen-main {
   height: 88%;
 }
 
-.TextingPage-main-messaging {
+.ChatScreen-main-messaging {
   height: 86%;
   border-bottom: .1rem solid gray;
 }
 
-.TextingPage-main-sending {
+.ChatScreen-main-sending {
   height: 14%;
   background-color: #cccccc;
   position: relative;
 }
 
-.TextingPage-main-sending-input {
+.ChatScreen-main-sending-input {
   height: 40%;
   width: 80%;
   position: absolute;
@@ -53,9 +53,11 @@
   font-size: 3rem;
   border-radius: 10rem;
   background-color: white;
+  padding: 1rem;
+  padding-left: 2rem;
 }
 
-.TextingPage-main-sending-btn {
+.ChatScreen-main-sending-btn {
   height: 50%;
   width: 10%;
   position: absolute;

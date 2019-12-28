@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Homepage from '../../Components/Homepage/Homepage';
+import SignUp from '../../Components/SignUp/SignUp';
 import Messenger from '../Messenger/Messenger'
 import './App.css';
 
@@ -19,8 +20,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setRoute: (route) => dispatch(setRoute(route)),
-    setEmail: (event) => dispatch(setEmail(event.target.value)),
-    setPassword: (event) => dispatch(setPassword(event.target.value)),
+    setEmail: (email) => dispatch(setEmail(email)),
+    setPassword: (password) => dispatch(setPassword(password)),
     loadUser: (user) => dispatch(loadUser(user)),
     setUserFriends: (friends) => dispatch(setUserFriends(friends))
   };
@@ -37,6 +38,8 @@ class App extends Component {
      this.props.loadUser(friends[4]);
      this.props.setUserFriends(friends);
      this.props.setRoute('Messenger');
+     this.props.setEmail('')
+     this.props.setPassword('')
     })
   }
 
@@ -49,10 +52,18 @@ class App extends Component {
       return (
          <div className='App'>
             <Homepage
+            route={route}
             setRoute={setRoute}
             onSignIn={this.onSignIn}
             setEmail={setEmail}
             setPassword={setPassword}/>
+        </div>
+      );
+    }
+    if(route === 'SignUp') {
+      return (
+         <div className='App'>
+           <SignUp setRoute={setRoute} setEmail={setEmail} setPassword={setPassword}/>
         </div>
       );
     }

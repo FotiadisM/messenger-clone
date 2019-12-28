@@ -9,6 +9,7 @@ import {
 const initialState = {
   id: 0,
   name: '',
+  email: '',
   status: 'Active',
   friends: []
 }
@@ -20,6 +21,7 @@ export const changeUserInfo = (state = initialState, action = {}) => {
         ...state,
         id: action.payload.id,
         name: action.payload.name,
+        email: action.payload.email,
         // status: action.payload.status,
         friends: action.payload.friends
       }

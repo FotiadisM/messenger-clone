@@ -1,0 +1,92 @@
+.SignUp {
+  height: 100%;
+}
+
+.SignUp-back-btn {
+  position: relative;
+  height: 6rem;
+  width: 6rem;
+  top: 7.5%;
+  left: 4%;
+  transform: translate(-50%, -50%);
+  background-color: blue;
+  border-radius: 2rem;
+}
+
+.SignUp-back-text {
+  position: absolute;
+  top: 7.5%;
+  left: 8%;
+  transform: translate(-50%, -50%);
+  margin-left: 15rem;
+  font-size: 2.5rem;
+}
+
+.SignUp-form {
+  position: relative;
+  height: 78%;
+  width: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: .2rem solid gray;
+  border-radius: 3.5rem;
+}
+
+.SignUp-form-text {
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 6rem;
+
+}
+
+.SignUp-form-line {
+  position: absolute;
+  top: 26%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+}
+
+.SignUp-form-input {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 6%;
+  width: 50%;
+  font-size: 3rem;
+  border: .2rem solid blue;
+  border-radius: 3rem;
+  padding-left: 2rem;
+}
+
+.SignUp-form-name {
+  top: 35%;
+}
+
+.SignUp-form-email {
+  top: 46%;
+}
+
+.SignUp-form-password {
+  top: 57%;
+}
+
+.SignUp-form-rpassword {
+  top: 68%;
+}
+
+.SignUp-form-btn {
+  position: absolute;
+  top: 84%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 10%;
+  width: 30%;
+  font-size: 3rem;
+  border-radius: 3rem;
+  color: white;
+  background-color: blue;
+}

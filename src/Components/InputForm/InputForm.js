@@ -9,7 +9,7 @@ const InputForm = ({mFunction, type, placeholder}) => {
                 className='InoutForm-input'
                 type={type}
                 placeholder={placeholder}
-                onChange={mFunction}
+                onChange={(event) => mFunction(event.target.value)}
             />
         </div>
     );
