@@ -11,20 +11,18 @@
   position: absolute;
   top: 50%;
   left: 5%;
-  transform: translate(-50%, -50%);
-  background-color: blue;
-  height: 5rem;
-  width: 5rem;
+  transform: translateY(-50%);
+}
+
+.Messenger-nav-logo-div {
+  float: left;
 }
 
 .Messenger-nav-logo-text {
-  position: absolute;
-  top: 50%;
-  left: 13%;
-  transform: translate(-50%, -50%);
   font-size: 4.5rem;
   font-weight: normal;
-  margin-left: 1.5rem;
+  float: right;
+  margin-left: 3.5rem;
   letter-spacing: 0.2rem;
 }
 

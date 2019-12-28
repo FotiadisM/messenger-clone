@@ -11,22 +11,19 @@
 .Homepage-nav-logo {
   position: absolute;
   top: 50%;
-  left: 12%;
-  transform: translate(-50%, -50%);
+  left: 5%;
+  transform: translateY(-50%);
 }
 
 .Homepage-nav-logo-div {
-  background-color: blue;
   float: left;
-  height: 5rem;
-  width: 5rem;
 }
 
 .Homepage-nav-logo-text {
   font-size: 4.5rem;
   font-weight: normal;
   float: right;
-  margin-left: 1.5rem;
+  margin-left: 3.5rem;
   letter-spacing: 0.2rem;
 }
 
@@ -55,7 +52,7 @@
   padding: .6rem;
   color: white;
   font-size: 2.6rem;
-  letter-spacing: .15rem;
+  letter-spacing: .2rem;
   border-radius: 1.4rem;
   float: right;
   padding: 1rem;;
@@ -86,7 +83,7 @@
 .Homepage-section-text-btn {
   position: absolute;
   top: 80%;
-  left: 32%;
+  left: 35%;
   transform: translate(-50%, -50%);
   background-color: blue;
   padding: 3rem;

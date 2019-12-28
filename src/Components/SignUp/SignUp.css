@@ -13,6 +13,14 @@
   border-radius: 2rem;
 }
 
+.SignUp-back-btn-icon {
+  position: absolute;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .SignUp-back-text {
   position: absolute;
   top: 7.5%;
@@ -26,7 +34,7 @@
   position: relative;
   height: 78%;
   width: 40%;
-  top: 50%;
+  top: 46%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: .2rem solid gray;

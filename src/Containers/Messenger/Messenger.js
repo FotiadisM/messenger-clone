@@ -7,6 +7,8 @@ import './Messenger.css';
 import { setFriendsSearch } from '../../Actions/actions/inputActions';
 import { setUser } from '../../Actions/actions/textingActions';
 
+import logo from '../../Assets/messenger.png'
+
 const mapStateToProps = (state) => {
   return {
     input: state.input,
@@ -35,8 +37,10 @@ class Messenger extends Component {
     return (
       <div className='Messenger'>
         <div className='Messenger-nav'>
-            <div className='Messenger-nav-logo'></div>
+          <div className='Messenger-nav-logo'>
+            <img src={logo} className='Messenger-nav-logo-div' alt='Logo'/>
             <h1 className='Messenger-nav-logo-text'>messenger</h1>
+          </div>
         </div>
         <div className='Messenger-section'>
           <div className='Messenger-section-friendsList'>

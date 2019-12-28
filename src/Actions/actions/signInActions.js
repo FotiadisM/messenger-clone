@@ -3,12 +3,12 @@ import {
   CHANGE_SIGNIN_PASSWORD
 } from '../constants';
 
-export const setEmail = (text) => ({
+export const setSignInEmail = (text) => ({
   type: CHANGE_SIGNIN_EMAIL,
   payload: text
 })
 
-export const setPassword = (text) => ({
+export const setSignInPassword = (text) => ({
   type: CHANGE_SIGNIN_PASSWORD,
   payload: text
 })

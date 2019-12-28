@@ -1,6 +1,7 @@
 import { createStore, combineReducers } from 'redux';
 import { changeRoute } from './Reducers/routeReducer';
-import { changeSignInInfo } from './Reducers/signinReducer';
+import { changeSignInInfo } from './Reducers/signInReducer';
+import { changeSignUpInfo } from './Reducers/signUpReducer';
 import { changeUserInfo } from './Reducers/userReducer';
 import { changeInputSearch } from './Reducers/inputReducer';
 import { changeTextingInfo } from './Reducers/textingReducer'
@@ -8,7 +9,8 @@ import { changeTextingInfo } from './Reducers/textingReducer'
 const store = createStore(
   combineReducers({
     route: changeRoute,
-    signin: changeSignInInfo,
+    signIn: changeSignInInfo,
+    signUp: changeSignUpInfo,
     user: changeUserInfo,
     input: changeInputSearch,
     texting: changeTextingInfo

@@ -1,6 +1,8 @@
 import React from 'react';
 import InputForm from '../InputForm/InputForm';
+import logo from '../../Assets/messenger.png';
 import './Homepage.css';
+
 
 const Homepage = ({ setRoute, onSignIn, setEmail, setPassword,  }) => {
 
@@ -8,7 +10,7 @@ const Homepage = ({ setRoute, onSignIn, setEmail, setPassword,  }) => {
     <div className='Homepage'>
       <div className='Homepage-nav'>
         <div className='Homepage-nav-logo'>
-          <div className='Homepage-nav-logo-div'></div>
+          <img src={logo} className='Homepage-nav-logo-div' alt='Logo'/>
           <h1 className='Homepage-nav-logo-text'>messenger</h1>
         </div>
           <div className='Homepage-nav-text'>Don't have an account?</div>
