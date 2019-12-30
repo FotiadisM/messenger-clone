@@ -12,8 +12,12 @@
   top: 50%;
   left: 14%;
   transform: translate(-50%, -50%);
-  border-radius: 100rem;
-  background-color: black;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  border: .1rem solid gray;
+}
+.Friend-picture-img {
+  height: 100%;
 }
 
 .Friend-name {

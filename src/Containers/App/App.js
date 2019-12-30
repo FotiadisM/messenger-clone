@@ -34,26 +34,43 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const validateSignUp = ({ name, email, password, rpassword }) => {
+  // needs better handling, maybe a npm package
+  if(name === '' || email === '' || password === '' || rpassword === '') {
+    return false;
+  }
+  else if(password !== rpassword) {
+    return false;
+  }
   return true;
 }
 
 class App extends Component {
 
   onSignIn = () => {
-    fetch('https://jsonplaceholder.typicode.com/users', {
-      method: 'get'
+    const { email, password } = this.props.signIn;
+
+    fetch('http://localhost:3001/login', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
     })
     .then(response => response.json())
-    .then(friends => {
-      this.props.loadUser({
-        id: 1,
-        name: "Fotiadis Michalis",
-        email: "myEmail@themail.com"
-      });
-      this.props.setUserFriends(friends);
-      this.props.setRoute('Messenger');
-      this.props.setSignInEmail('')
-      this.props.setSignInPassword('')
+    .then(user => {
+      if(user) {
+        this.props.loadUser(user);
+        fetch('https://jsonplaceholder.typicode.com/users', {
+          method: 'get'
+        })
+        .then(response => response.json())
+        .then(friends => this.props.setUserFriends(friends))
+        this.props.setRoute('Messenger');
+      }
+      else {
+        window.alert('Email or password don\'t match');
+      }
     })
   }
 
@@ -71,9 +88,15 @@ class App extends Component {
         })
       })
       .then(response => response.json())
-      .then(response => {
-        console.log(response)
-        this.props.setRoute('Messenger');
+      .then(user => {
+        if(user) {
+          
+          this.props.loadUser(user);
+          this.props.setRoute('Messenger');
+        }
+        else {
+          window.alert('Email is being used')
+        }
       })
       .catch(err => console.log(err))
     }

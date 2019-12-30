@@ -19,7 +19,7 @@ export const changeUserInfo = (state = initialState, action = {}) => {
     case USER_LOAD_USER:
       return {
         ...state,
-        id: action.payload.id,
+        id: action.payload._id,
         name: action.payload.name,
         email: action.payload.email,
         // status: action.payload.status,

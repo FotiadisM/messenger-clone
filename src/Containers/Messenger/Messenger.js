@@ -8,6 +8,7 @@ import { setFriendsSearch } from '../../Actions/actions/inputActions';
 import { setUser } from '../../Actions/actions/textingActions';
 
 import logo from '../../Assets/messenger.png'
+import addFriend from '../../Assets/add-friend.png';
 
 const mapStateToProps = (state) => {
   return {
@@ -25,6 +26,10 @@ const mapDispatchToProps = (dispatch) => {
 
 class Messenger extends Component {
 
+  onAddFriend = () => {
+    
+  }
+
   render() {
     const { setRoute, user, setFriendsSearch, setTextingUser } = this.props;
     const friendsSearch = this.props.input.friendsSearch;
@@ -41,6 +46,9 @@ class Messenger extends Component {
             <img src={logo} className='Messenger-nav-logo-div' alt='Logo'/>
             <h1 className='Messenger-nav-logo-text'>messenger</h1>
           </div>
+          <button className='Messenger-nav-add'>
+            <img className='Messenger-nav-add-img' src={addFriend} alt='Add friend'/>Add a friend
+          </button>
         </div>
         <div className='Messenger-section'>
           <div className='Messenger-section-friendsList'>
@@ -59,7 +67,9 @@ class Messenger extends Component {
             <ChatScreen textingUser={textingUser}/>
           </div>
           <div className='Messenger-section-profile'>
-            <div className='Messenger-section-profile-picture'></div>
+            <div className='Messenger-section-profile-picture'>
+              <img className='Messenger-section-profile-picture-img' src={'https://robohash.org/7' + user.id} alt='Profile'/>
+              </div>
             <div className='Messenger-section-profile-status'>{user.status}</div>
             <div className='Messenger-section-profile-name'>{user.name}</div>
             <div className='Messenger-section-profile-blogs'>My Blogs</div>

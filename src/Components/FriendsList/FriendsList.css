@@ -2,3 +2,17 @@
   height: 100%;
   overflow-y: scroll;
 }
+
+.FriendsList-empty {
+  height: 100%;
+  position: relative;
+}
+
+.FriendsList-empty-text {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5.5rem;
+  letter-spacing: .2rem;
+}

@@ -18,7 +18,7 @@ const SignUp = ({ setRoute, onSignUp, setName, setEmail, setPassword, setRPasswo
           onChange={(event) => setEmail(event.target.value)}/>
         <input type='password' className='SignUp-form-input SignUp-form-password' placeholder='Password'
           onChange={(event) => setPassword(event.target.value)}/>
-        <input type='password' className='SignUp-form-input SignUp-form-rpassword' placeholder='Reapeat password'
+        <input type='password' className='SignUp-form-input SignUp-form-rpassword' placeholder='Repeat password'
           onChange={(event) => setRPassword(event.target.value)}/>
         <button className='btn SignUp-form-btn' onClick={onSignUp}>Get Started!</button>
       </div>
