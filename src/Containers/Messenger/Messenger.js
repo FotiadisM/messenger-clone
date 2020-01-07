@@ -2,40 +2,83 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FriendsList from '../../Components/FriendsList/FriendsList';
 import ChatScreen from '../../Components/ChatScreen/ChatScreen';
+import UserProfile from '../../Components/UserProfile/UserProfile';
 import './Messenger.css';
 
-import { setFriendsSearch } from '../../Actions/actions/inputActions';
 import { setUser } from '../../Actions/actions/textingActions';
+import { setUserFriends } from '../../Actions/actions/userActions';
+import { setFriendsSearch, setInputUsers , setUserProfile} from '../../Actions/actions/inputActions';
 
 import logo from '../../Assets/messenger.png'
-import addFriend from '../../Assets/add-friend.png';
+import addFriendIcon from '../../Assets/add-friend.png';
 
 const mapStateToProps = (state) => {
   return {
     input: state.input,
-    texting: state.texting
+    texting: state.texting,
+    user: state.user
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setFriendsSearch: (event) => dispatch(setFriendsSearch(event.target.value)),
-    setTextingUser: (user) => dispatch(setUser(user))
+    setUserProfile: (user) => dispatch(setUserProfile(user)),
+    setInputUsers: (users) => dispatch(setInputUsers(users)),
+    setTextingUser: (user) => dispatch(setUser(user)),
+    setUserFriends: (friends) => dispatch(setUserFriends(friends))
   };
 };
 
 class Messenger extends Component {
 
-  onAddFriend = () => {
+  constructor(props) {
+    super(props);
+    this.addFriendMode = false;
+  }
+
+  onUserClick = (user) => {
+    if(this.addFriendMode) {
+      this.props.setUserProfile(user);
+    }
+    else {
+      this.props.setTextingUser(user);
+    }
+  }
+
+  onFriendRequest = () => {
     
   }
 
+  toggleAddFriendMode = () => {
+    if(!this.addFriendMode) {
+      fetch('http://localhost:3001/friends', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          email: this.props.user.email
+        })
+      })
+      .then(response => response.json())
+      .then(users => {
+        this.addFriendMode = true;
+        this.props.setInputUsers(users)
+      }
+      )
+    }
+    else {
+      this.addFriendMode = false;
+      this.props.setInputUsers(this.props.user.friends);
+      this.props.setUserProfile(this.props.user);
+    }
+  }
+
   render() {
-    const { setRoute, user, setFriendsSearch, setTextingUser } = this.props;
-    const friendsSearch = this.props.input.friendsSearch;
+    const { setRoute, setFriendsSearch } = this.props;
+    const { friendsSearch, userProfile, users } = this.props.input;
     const textingUser = this.props.texting;
 
-    const filteredFriends = user.friends.filter(user => {
+    const filteredFriends = users.filter(user => {
       return user.name.toLocaleLowerCase().includes(friendsSearch.toLocaleLowerCase());
     })
 
@@ -46,8 +89,8 @@ class Messenger extends Component {
             <img src={logo} className='Messenger-nav-logo-div' alt='Logo'/>
             <h1 className='Messenger-nav-logo-text'>messenger</h1>
           </div>
-          <button className='Messenger-nav-add'>
-            <img className='Messenger-nav-add-img' src={addFriend} alt='Add friend'/>Add a friend
+          <button className='Messenger-nav-add' onClick={this.toggleAddFriendMode}>
+            <img className='Messenger-nav-add-img' src={addFriendIcon} alt='Add friend'/>Add a friend
           </button>
         </div>
         <div className='Messenger-section'>
@@ -60,22 +103,14 @@ class Messenger extends Component {
                 onChange={setFriendsSearch}/>
             </div>
             <div className='Messenger-section-friendsList-list'>
-              <FriendsList users={filteredFriends} setTextingUser={setTextingUser}/>
+              <FriendsList users={filteredFriends} onUserClick={this.onUserClick}/>
             </div>
           </div>
           <div className='Messenger-section-message'>
-            <ChatScreen textingUser={textingUser}/>
+            <ChatScreen textingUser={textingUser} addFriendMode={this.addFriendMode}/>
           </div>
           <div className='Messenger-section-profile'>
-            <div className='Messenger-section-profile-picture'>
-              <img className='Messenger-section-profile-picture-img' src={'https://robohash.org/7' + user.id} alt='Profile'/>
-              </div>
-            <div className='Messenger-section-profile-status'>{user.status}</div>
-            <div className='Messenger-section-profile-name'>{user.name}</div>
-            <div className='Messenger-section-profile-blogs'>My Blogs</div>
-            <div className='Messenger-section-profile-settings'>Settings</div>
-            <div className='Messenger-section-profile-signOut' onClick={() => setRoute('Homepage')}>Sign Out</div>
-            <div className='Messenger-section-profile-delete'>Delete Profile</div>
+            <UserProfile setRoute={setRoute} user={userProfile} addFriendMode={this.addFriendMode}/>
           </div>
         </div>
       </div>

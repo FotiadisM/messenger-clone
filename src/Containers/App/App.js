@@ -6,6 +6,7 @@ import Messenger from '../Messenger/Messenger'
 import './App.css';
 
 import { setRoute } from '../../Actions/actions/routeActions';
+import { setInputUsers, setUserProfile } from '../../Actions/actions/inputActions';
 import { setSignInEmail, setSignInPassword } from '../../Actions/actions/signInActions';
 import { setSignUpName, setSignUpEmail, setSignUpPassword, setSignUpRPassword } from '../../Actions/actions/signUpActions';
 import { loadUser, setUserFriends } from '../../Actions/actions/userActions';
@@ -29,7 +30,9 @@ const mapDispatchToProps = (dispatch) => {
     setSignUpPassword: (password) => dispatch(setSignUpPassword(password)),
     setSignUpRPassword: (password) => dispatch(setSignUpRPassword(password)),
     loadUser: (user) => dispatch(loadUser(user)),
-    setUserFriends: (friends) => dispatch(setUserFriends(friends))
+    setUserFriends: (friends) => dispatch(setUserFriends(friends)),
+    setInputUsers: (users) => dispatch(setInputUsers(users)),
+    setUserProfile: (user) => dispatch(setUserProfile(user))
   };
 };
 
@@ -61,11 +64,15 @@ class App extends Component {
     .then(user => {
       if(user) {
         this.props.loadUser(user);
+        this.props.setUserProfile(user)
         fetch('https://jsonplaceholder.typicode.com/users', {
           method: 'get'
         })
         .then(response => response.json())
-        .then(friends => this.props.setUserFriends(friends))
+        .then(friends => {
+          this.props.setUserFriends(friends)
+          this.props.setInputUsers(friends)
+        })
         this.props.setRoute('Messenger');
       }
       else {

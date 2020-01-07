@@ -1,0 +1,17 @@
+.UserProfile {
+  height: 100%;
+}
+
+.UserProfile-friendBtn {
+  position: absolute;
+  top: 84%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-weight: 500;
+  padding: 1.8rem;
+  border-radius: 3rem;
+  border: .2rem solid gray;
+  color:#2008f8;
+  background-color: white;
+}

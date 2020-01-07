@@ -1,9 +1,9 @@
 import React from 'react';
 import './ChatScreen.css';
 
-const ChatScreen = ({ textingUser }) => {
+const ChatScreen = ({ textingUser, addFriendMode }) => {
 
-  if(textingUser.id === 0) {
+  if(textingUser.id === 0 || addFriendMode === true) {
     return (
       <div className='ChatScreen-emtpy'></div>
     );

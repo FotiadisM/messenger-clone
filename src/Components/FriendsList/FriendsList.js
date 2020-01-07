@@ -2,7 +2,7 @@ import React from 'react';
 import Friend from '../Friend/Friend'
 import './FriendsList.css';
 
-const FriendsList = ({ users, setTextingUser }) => {
+const FriendsList = ({ users, onUserClick }) => {
 
   if(users.length === 0) {
     return (
@@ -17,7 +17,7 @@ const FriendsList = ({ users, setTextingUser }) => {
         {
           users.map((user, i) => {
             return (
-              <Friend key={user.id} user={user} setTextingUser={setTextingUser}/>
+              <Friend key={user.id} user={user} onUserClick={onUserClick}/>
             );
           })
         }

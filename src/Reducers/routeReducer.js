@@ -1,7 +1,7 @@
 import { CHANGE_ROUTE } from '../Actions/constants';
 
 const initialState = {
-  route: 'Messenger'
+  route: 'Homepage'
 }
 
 export const changeRoute = (state = initialState, action = {}) => {

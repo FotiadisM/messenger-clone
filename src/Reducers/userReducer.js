@@ -7,7 +7,7 @@ import {
 } from '../Actions/constants'
 
 const initialState = {
-  id: 0,
+  _id: 0,
   name: '',
   email: '',
   status: 'Active',
@@ -19,7 +19,7 @@ export const changeUserInfo = (state = initialState, action = {}) => {
     case USER_LOAD_USER:
       return {
         ...state,
-        id: action.payload._id,
+        _id: action.payload._id,
         name: action.payload.name,
         email: action.payload.email,
         // status: action.payload.status,
@@ -29,7 +29,7 @@ export const changeUserInfo = (state = initialState, action = {}) => {
     case USER_CHANGE_ID:
       return {
         ...state,
-        id: action.payload
+        _id: action.payload
       };
     case USER_CHANGE_NAME:
       return {
