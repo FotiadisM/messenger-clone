@@ -17,7 +17,7 @@ const FriendsList = ({ users, onUserClick }) => {
         {
           users.map((user, i) => {
             return (
-              <Friend key={user.id} user={user} onUserClick={onUserClick}/>
+              <Friend key={user._id} user={user} onUserClick={onUserClick}/>
             );
           })
         }

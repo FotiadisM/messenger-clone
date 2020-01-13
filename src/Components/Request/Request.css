@@ -1,0 +1,15 @@
+.Request {
+  height: 12%;
+  width: 100%;
+  border-bottom: .1rem solid gray;
+  position: relative;
+  background-color: pink;
+}
+
+.Request-name {
+  position: absolute;
+  top: 50%;
+  left: 50;
+  transform: translateX(-50%);
+  font-size: 3rem;
+}

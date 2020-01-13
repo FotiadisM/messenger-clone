@@ -1,10 +1,30 @@
 .Messenger {
-    height: 100%;
+  height: 100%;
 }
 
 .Messenger-nav {
   height: 15%;
   position: relative;
+}
+
+.Messenger-nav-requests {
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  font-size: 2.8rem;
+  padding: 1rem 1.5rem;
+  border-radius: 2rem;
+  color: white;
+  background-color: blue;
+}
+
+.Messenger-nav-requests-span {
+  display: inline-block;
+  width: 3rem;
+  margin-right: 1rem;
+  border-radius: 200rem;
+  background-color: red;
 }
 
 .Messenger-nav-add {
@@ -20,7 +40,8 @@
 }
 
 .Messenger-nav-add-img {
-  margin-right: 1rem;
+  height: 4rem;
+  margin-right: 1.5rem;
   vertical-align:middle;
 }
 

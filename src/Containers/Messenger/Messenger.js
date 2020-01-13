@@ -34,11 +34,14 @@ class Messenger extends Component {
 
   constructor(props) {
     super(props);
-    this.addFriendMode = false;
+    this.state = {
+      requestsMode: false,
+      addFriendMode: false
+    }
   }
 
   onUserClick = (user) => {
-    if(this.addFriendMode) {
+    if(this.state.addFriendMode) {
       this.props.setUserProfile(user);
     }
     else {
@@ -46,13 +49,23 @@ class Messenger extends Component {
     }
   }
 
-  onFriendRequest = () => {
-    
+  onFriendRequest = (user) => {
+    fetch('http://localhost:3001/sendRequest', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          email: user.email,
+          user: {
+            id: this.props.user._id,
+            name: this.props.user.name
+          }
+        })
+    })
   }
 
   toggleAddFriendMode = () => {
-    if(!this.addFriendMode) {
-      fetch('http://localhost:3001/friends', {
+    if(!this.state.addFriendMode) {
+      fetch('http://localhost:3001/users', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -61,20 +74,29 @@ class Messenger extends Component {
       })
       .then(response => response.json())
       .then(users => {
-        this.addFriendMode = true;
+        this.setState({addFriendMode: true});
         this.props.setInputUsers(users)
-      }
-      )
+        this.props.setUserProfile(users[0]);
+      })
     }
     else {
-      this.addFriendMode = false;
+      this.setState({addFriendMode: false});
       this.props.setInputUsers(this.props.user.friends);
       this.props.setUserProfile(this.props.user);
     }
   }
 
+  toggleRequestMode = () => {
+    if(this.state.requestsMode) {
+      this.setState({requestsMode: false});
+    }
+    else {
+      this.setState({requestsMode: true});
+    }
+  }
+
   render() {
-    const { setRoute, setFriendsSearch } = this.props;
+    const { setRoute, user, setFriendsSearch } = this.props;
     const { friendsSearch, userProfile, users } = this.props.input;
     const textingUser = this.props.texting;
 
@@ -89,6 +111,7 @@ class Messenger extends Component {
             <img src={logo} className='Messenger-nav-logo-div' alt='Logo'/>
             <h1 className='Messenger-nav-logo-text'>messenger</h1>
           </div>
+          <button className='btn Messenger-nav-requests' onClick={this.toggleRequestMode}><span className='Messenger-nav-requests-span'>{user.requests.length}</span>Requests</button>
           <button className='Messenger-nav-add' onClick={this.toggleAddFriendMode}>
             <img className='Messenger-nav-add-img' src={addFriendIcon} alt='Add friend'/>Add a friend
           </button>
@@ -107,10 +130,10 @@ class Messenger extends Component {
             </div>
           </div>
           <div className='Messenger-section-message'>
-            <ChatScreen textingUser={textingUser} addFriendMode={this.addFriendMode}/>
+            <ChatScreen textingUser={textingUser} addFriendMode={this.state.addFriendMode}/>
           </div>
           <div className='Messenger-section-profile'>
-            <UserProfile setRoute={setRoute} user={userProfile} addFriendMode={this.addFriendMode}/>
+            <UserProfile setRoute={setRoute} user={userProfile} addFriendMode={this.state.addFriendMode} requestsMode={this.state.requestsMode} requests={user.requests} onFriendRequest={this.onFriendRequest}/>
           </div>
         </div>
       </div>

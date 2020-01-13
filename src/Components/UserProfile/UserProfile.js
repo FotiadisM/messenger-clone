@@ -1,16 +1,25 @@
 import React from 'react';
+import RequestsList from '../RequestsList/RequestsList';
 import './UserProfile.css';
 
-const UserProfile = ({ setRoute, user, addFriendMode }) => {
+const UserProfile = ({ setRoute, user, addFriendMode, requestsMode, requests, onFriendRequest }) => {
 
-  if(addFriendMode) {
+  if(requestsMode) {
+    return (
+      <div className='UserProfile'>
+        <RequestsList requests={requests}/>
+      </div>
+    );
+  }
+
+  else if(addFriendMode) {
     return (
       <div className='UserProfile'>
         <div className='Messenger-section-profile-picture'>
           <img className='Messenger-section-profile-picture-img' src={'https://robohash.org/7' + user._id} alt='Profile'/>
         </div>
         <div className='Messenger-section-profile-name'>{user.name}</div>
-        <button className='btn UserProfile-friendBtn'>Send friend Request</button>
+        <button className='btn UserProfile-friendBtn' onClick={() => onFriendRequest(user)}>Send friend Request</button>
       </div>
     );
   }

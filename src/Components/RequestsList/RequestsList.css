@@ -1,0 +1,9 @@
+.RequestsList {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.RequestsList-empty {
+  height: 100%;
+  position: relative;
+}

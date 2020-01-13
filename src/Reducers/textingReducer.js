@@ -13,7 +13,7 @@ export const changeTextingInfo = (state = initialState, action = {}) => {
     case TEXTING_SET_USER:
       return {
         ...state,
-        id: action.payload.id,
+        id: action.payload._id,
         name: action.payload.name
       }
     default:

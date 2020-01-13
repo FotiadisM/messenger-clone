@@ -65,14 +65,14 @@ class App extends Component {
       if(user) {
         this.props.loadUser(user);
         this.props.setUserProfile(user)
-        fetch('https://jsonplaceholder.typicode.com/users', {
-          method: 'get'
-        })
-        .then(response => response.json())
-        .then(friends => {
-          this.props.setUserFriends(friends)
-          this.props.setInputUsers(friends)
-        })
+        // fetch('https://jsonplaceholder.typicode.com/users', {
+        //   method: 'get'
+        // })
+        // .then(response => response.json())
+        // .then(friends => {
+        //   this.props.setUserFriends(friends)
+        // })
+        this.props.setInputUsers(this.props.user.friends);
         this.props.setRoute('Messenger');
       }
       else {
@@ -97,8 +97,8 @@ class App extends Component {
       .then(response => response.json())
       .then(user => {
         if(user) {
-          
           this.props.loadUser(user);
+          this.props.setUserProfile(user);
           this.props.setRoute('Messenger');
         }
         else {

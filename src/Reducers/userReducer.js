@@ -11,7 +11,8 @@ const initialState = {
   name: '',
   email: '',
   status: 'Active',
-  friends: []
+  friends: [],
+  request: []
 }
 
 export const changeUserInfo = (state = initialState, action = {}) => {
@@ -23,7 +24,8 @@ export const changeUserInfo = (state = initialState, action = {}) => {
         name: action.payload.name,
         email: action.payload.email,
         // status: action.payload.status,
-        friends: action.payload.friends
+        friends: action.payload.friends,
+        requests: action.payload.requests
       }
 
     case USER_CHANGE_ID:
