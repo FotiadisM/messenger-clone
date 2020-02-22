@@ -3,13 +3,36 @@
   width: 100%;
   border-bottom: .1rem solid gray;
   position: relative;
-  background-color: pink;
 }
 
 .Request-name {
   position: absolute;
   top: 50%;
-  left: 50;
-  transform: translateX(-50%);
+  left: 4%;
+  transform: translateY(-50%);
   font-size: 3rem;
+}
+
+.Request-options {
+  position: absolute;
+  top: 50%;
+  left: 66%;
+  transform: translateY(-50%);
+}
+
+.Request-square {
+  height: 5.2rem;
+  width: 5.2rem;
+}
+
+.Request-options-accept {
+  float: left;
+  background-color: green;
+  margin-right: 1rem;
+}
+
+.Request-options-reject {
+  float: right;
+  background-color: red;
+  margin-left: 1rem;
 }

@@ -65,13 +65,6 @@ class App extends Component {
       if(user) {
         this.props.loadUser(user);
         this.props.setUserProfile(user)
-        // fetch('https://jsonplaceholder.typicode.com/users', {
-        //   method: 'get'
-        // })
-        // .then(response => response.json())
-        // .then(friends => {
-        //   this.props.setUserFriends(friends)
-        // })
         this.props.setInputUsers(this.props.user.friends);
         this.props.setRoute('Messenger');
       }

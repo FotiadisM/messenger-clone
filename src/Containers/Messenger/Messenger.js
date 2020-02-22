@@ -5,9 +5,11 @@ import ChatScreen from '../../Components/ChatScreen/ChatScreen';
 import UserProfile from '../../Components/UserProfile/UserProfile';
 import './Messenger.css';
 
-import { setUser } from '../../Actions/actions/textingActions';
-import { setUserFriends } from '../../Actions/actions/userActions';
+import { setUser, setConnectedUser} from '../../Actions/actions/textingActions';
+import { setUserFriends, setUserRequests } from '../../Actions/actions/userActions';
 import { setFriendsSearch, setInputUsers , setUserProfile} from '../../Actions/actions/inputActions';
+
+import Chatkit from '@pusher/chatkit-client';
 
 import logo from '../../Assets/messenger.png'
 import addFriendIcon from '../../Assets/add-friend.png';
@@ -26,7 +28,9 @@ const mapDispatchToProps = (dispatch) => {
     setUserProfile: (user) => dispatch(setUserProfile(user)),
     setInputUsers: (users) => dispatch(setInputUsers(users)),
     setTextingUser: (user) => dispatch(setUser(user)),
-    setUserFriends: (friends) => dispatch(setUserFriends(friends))
+    setConnectedUser: (user) => dispatch(setConnectedUser(user)),
+    setUserFriends: (friends) => dispatch(setUserFriends(friends)),
+    setUserRequests: (requests) => dispatch(setUserRequests(requests))
   };
 };
 
@@ -45,6 +49,7 @@ class Messenger extends Component {
       this.props.setUserProfile(user);
     }
     else {
+      console.log(user);
       this.props.setTextingUser(user);
     }
   }
@@ -63,6 +68,27 @@ class Messenger extends Component {
     })
   }
 
+  onAcceptRequest = (user) => {
+    fetch('http://localhost:3001/acceptRequest', {
+      method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          id: this.props.user._id,
+          name: this.props.user.name,
+          user: {
+            id: user._id,
+            name: user.name
+          }
+        })
+    })
+    .then(response => response.json())
+    .then(({ friends, requests }) => {
+      this.props.setUserFriends(friends);
+      this.props.setInputUsers(friends);
+      this.props.setUserRequests(requests);
+    })
+  }
+
   toggleAddFriendMode = () => {
     if(!this.state.addFriendMode) {
       fetch('http://localhost:3001/users', {
@@ -74,9 +100,11 @@ class Messenger extends Component {
       })
       .then(response => response.json())
       .then(users => {
-        this.setState({addFriendMode: true});
-        this.props.setInputUsers(users)
-        this.props.setUserProfile(users[0]);
+        if(users.length !== 0) {
+          this.setState({addFriendMode: true});
+          this.props.setInputUsers(users)
+          this.props.setUserProfile(users[0]);
+        }
       })
     }
     else {
@@ -93,6 +121,23 @@ class Messenger extends Component {
     else {
       this.setState({requestsMode: true});
     }
+  }
+
+  componentDidMount() {
+    const chatManager = new Chatkit.ChatManager({
+      instanceLocator: '',
+      userId: this.props.user._id,
+      tokenProvider: new Chatkit.TokenProvider({
+        url: 'http://localhost:3001/authenticate',
+      }),
+    })
+    chatManager.connect()
+    .then(user => {
+      this.props.setConnectedUser(user);
+    })
+    .catch(err => {
+      console.error("error:", err);
+    })
   }
 
   render() {
@@ -133,7 +178,14 @@ class Messenger extends Component {
             <ChatScreen textingUser={textingUser} addFriendMode={this.state.addFriendMode}/>
           </div>
           <div className='Messenger-section-profile'>
-            <UserProfile setRoute={setRoute} user={userProfile} addFriendMode={this.state.addFriendMode} requestsMode={this.state.requestsMode} requests={user.requests} onFriendRequest={this.onFriendRequest}/>
+            <UserProfile 
+              setRoute={setRoute}
+              user={userProfile}
+              addFriendMode={this.state.addFriendMode}
+              requestsMode={this.state.requestsMode}
+              requests={user.requests}
+              onFriendRequest={this.onFriendRequest}
+              onAcceptRequest={this.onAcceptRequest}/>
           </div>
         </div>
       </div>

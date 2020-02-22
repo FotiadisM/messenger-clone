@@ -2,12 +2,12 @@ import React from 'react';
 import RequestsList from '../RequestsList/RequestsList';
 import './UserProfile.css';
 
-const UserProfile = ({ setRoute, user, addFriendMode, requestsMode, requests, onFriendRequest }) => {
+const UserProfile = ({ setRoute, user, addFriendMode, requestsMode, requests, onFriendRequest, onAcceptRequest }) => {
 
   if(requestsMode) {
     return (
       <div className='UserProfile'>
-        <RequestsList requests={requests}/>
+        <RequestsList requests={requests} onAcceptRequest={onAcceptRequest}/>
       </div>
     );
   }

@@ -9,6 +9,20 @@ const ChatScreen = ({ textingUser, addFriendMode }) => {
     );
   }
   else {
+
+    console.log(textingUser.user);
+
+    textingUser.user.subscribeToRoomMultipart({
+      roomId: textingUser.roomId,
+      messageLimit: 100,
+      hooks: {
+        onMessage: message => {
+          console.log("received message", message)
+        }
+      }
+    })
+    .catch(err => console.log(err))
+
     return (
       <div className='ChatScreen'>
         <div className='ChatScreen-user'>

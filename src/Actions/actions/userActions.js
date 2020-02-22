@@ -3,7 +3,8 @@ import {
   USER_CHANGE_ID,
   USER_CHANGE_NAME,
   USER_CHANGE_STATUS,
-  USER_CHANGE_FRIENDS
+  USER_CHANGE_FRIENDS,
+  USER_CHANGE_REQUESTS
 } from '../constants';
 
 
@@ -30,4 +31,9 @@ export const setStatus = (status) => ({
 export const setUserFriends = (friends) => ({
   type: USER_CHANGE_FRIENDS,
   payload: friends
+})
+
+export const setUserRequests = (requests) => ({
+  type: USER_CHANGE_REQUESTS,
+  payload: requests
 })

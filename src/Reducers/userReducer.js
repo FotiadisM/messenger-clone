@@ -3,7 +3,8 @@ import {
   USER_CHANGE_ID,
   USER_CHANGE_NAME,
   USER_CHANGE_STATUS,
-  USER_CHANGE_FRIENDS
+  USER_CHANGE_FRIENDS,
+  USER_CHANGE_REQUESTS
 } from '../Actions/constants'
 
 const initialState = {
@@ -12,7 +13,7 @@ const initialState = {
   email: '',
   status: 'Active',
   friends: [],
-  request: []
+  requests: []
 }
 
 export const changeUserInfo = (state = initialState, action = {}) => {
@@ -47,6 +48,11 @@ export const changeUserInfo = (state = initialState, action = {}) => {
       return {
         ...state,
         friends: action.payload
+        };
+    case USER_CHANGE_REQUESTS:
+      return {
+        ...state,
+        requests: action.payload
         };
     default:
       return state;
