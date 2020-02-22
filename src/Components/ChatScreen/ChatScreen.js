@@ -1,7 +1,8 @@
 import React from 'react';
+import MessageList from '../MessageList/MessageList';
 import './ChatScreen.css';
 
-const ChatScreen = ({ textingUser, addFriendMode }) => {
+const ChatScreen = ({ textingUser, addFriendMode, setUserMessage, onSendMessage }) => {
 
   if(textingUser.id === 0 || addFriendMode === true) {
     return (
@@ -10,18 +11,12 @@ const ChatScreen = ({ textingUser, addFriendMode }) => {
   }
   else {
 
-    console.log(textingUser.user);
-
-    textingUser.user.subscribeToRoomMultipart({
-      roomId: textingUser.roomId,
-      messageLimit: 100,
-      hooks: {
-        onMessage: message => {
-          console.log("received message", message)
-        }
-      }
-    })
-    .catch(err => console.log(err))
+    const enterPressed = (event) => {
+      let code = event.keyCode || event.which;
+      if(code === 13) { //13 is the enter keycode
+          onSendMessage(event)
+      } 
+    }
 
     return (
       <div className='ChatScreen'>
@@ -33,11 +28,16 @@ const ChatScreen = ({ textingUser, addFriendMode }) => {
         </div>
         <div className='ChatScreen-main'>
           <div className='ChatScreen-main-messaging'>
-  
+            <MessageList messages={textingUser.messages}/>
           </div>
           <div className='ChatScreen-main-sending'>
-            <input className='ChatScreen-main-sending-input' type='text' placeholder='Send a message'/>
-            <button className='btn ChatScreen-main-sending-btn'>Send</button>
+            <input
+              id='ChatScreen-main-sending-input'
+              className='ChatScreen-main-sending-input'
+              type='text' placeholder='Send a message'
+              onChange={(event) => setUserMessage(event.target.value)}
+              onKeyPress={(event) => enterPressed(event)}/>
+            <button className='btn ChatScreen-main-sending-btn' onClick={onSendMessage}>Send</button>
           </div>
         </div>
       </div>

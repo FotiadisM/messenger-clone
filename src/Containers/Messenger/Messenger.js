@@ -5,9 +5,9 @@ import ChatScreen from '../../Components/ChatScreen/ChatScreen';
 import UserProfile from '../../Components/UserProfile/UserProfile';
 import './Messenger.css';
 
-import { setUser, setConnectedUser} from '../../Actions/actions/textingActions';
+import { setUser, setConnectedUser, loadMessages, clearMessages } from '../../Actions/actions/textingActions';
 import { setUserFriends, setUserRequests } from '../../Actions/actions/userActions';
-import { setFriendsSearch, setInputUsers , setUserProfile} from '../../Actions/actions/inputActions';
+import { setFriendsSearch, setInputUsers, setUserProfile, setUserMessage } from '../../Actions/actions/inputActions';
 
 import Chatkit from '@pusher/chatkit-client';
 
@@ -28,9 +28,12 @@ const mapDispatchToProps = (dispatch) => {
     setUserProfile: (user) => dispatch(setUserProfile(user)),
     setInputUsers: (users) => dispatch(setInputUsers(users)),
     setTextingUser: (user) => dispatch(setUser(user)),
+    loadMessages: (messages) => dispatch(loadMessages(messages)),
+    clearMessages: () => dispatch(clearMessages()),
     setConnectedUser: (user) => dispatch(setConnectedUser(user)),
     setUserFriends: (friends) => dispatch(setUserFriends(friends)),
-    setUserRequests: (requests) => dispatch(setUserRequests(requests))
+    setUserRequests: (requests) => dispatch(setUserRequests(requests)),
+    setUserMessage: (message) => dispatch(setUserMessage(message))
   };
 };
 
@@ -40,7 +43,8 @@ class Messenger extends Component {
     super(props);
     this.state = {
       requestsMode: false,
-      addFriendMode: false
+      addFriendMode: false,
+      curRoomId: ''
     }
   }
 
@@ -49,13 +53,39 @@ class Messenger extends Component {
       this.props.setUserProfile(user);
     }
     else {
-      console.log(user);
-      this.props.setTextingUser(user);
+      if(Object.entries(this.props.texting.user).length !== 0) {
+        if(this.state.curRoomId !== user.roomId) {
+          this.setState({curRoomId: user.roomId})
+          this.props.clearMessages();
+          this.props.setTextingUser(user)
+          this.props.texting.user.subscribeToRoomMultipart({
+            roomId: user.roomId,
+            messageLimit: 10,
+            hooks: {
+              onMessage: message => {
+                this.props.loadMessages(message);
+              }
+            }
+          })
+          .catch(err => console.log(err))
+        }
+      }
+    }
+  }
+
+  onSendMessage = () => {
+    if(this.props.input.message !== '') {
+      this.props.texting.user.sendSimpleMessage({
+        roomId: this.props.texting.roomId,
+        text: this.props.input.message,
+      })
+      document.getElementById('ChatScreen-main-sending-input').value = '';
+      this.props.setUserMessage('');
     }
   }
 
   onFriendRequest = (user) => {
-    fetch('http://localhost:3001/sendRequest', {
+    fetch(process.env.REACT_APP_SERVER_URL + '/sendRequest', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -69,7 +99,7 @@ class Messenger extends Component {
   }
 
   onAcceptRequest = (user) => {
-    fetch('http://localhost:3001/acceptRequest', {
+    fetch(process.env.REACT_APP_SERVER_URL + '/acceptRequest', {
       method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -91,7 +121,7 @@ class Messenger extends Component {
 
   toggleAddFriendMode = () => {
     if(!this.state.addFriendMode) {
-      fetch('http://localhost:3001/users', {
+      fetch(process.env.REACT_APP_SERVER_URL + '/users', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -128,7 +158,7 @@ class Messenger extends Component {
       instanceLocator: '',
       userId: this.props.user._id,
       tokenProvider: new Chatkit.TokenProvider({
-        url: 'http://localhost:3001/authenticate',
+        url: process.env.REACT_APP_SERVER_URL + '/authenticate',
       }),
     })
     chatManager.connect()
@@ -175,7 +205,7 @@ class Messenger extends Component {
             </div>
           </div>
           <div className='Messenger-section-message'>
-            <ChatScreen textingUser={textingUser} addFriendMode={this.state.addFriendMode}/>
+            <ChatScreen textingUser={textingUser} addFriendMode={this.state.addFriendMode} setUserMessage={this.props.setUserMessage} onSendMessage={this.onSendMessage}/>
           </div>
           <div className='Messenger-section-profile'>
             <UserProfile 

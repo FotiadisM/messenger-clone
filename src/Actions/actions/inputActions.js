@@ -1,7 +1,8 @@
 import {
   CHANGE_INPUT_FRIENDS,
   CHANGE_USER_PROFILE,
-  CHANGE_INPUT_USERS
+  CHANGE_INPUT_USERS,
+  CHANGE_USER_MESSAGE
 } from '../constants';
 
 export const setFriendsSearch = (text) => ({
@@ -17,4 +18,9 @@ export const setInputUsers = (users) => ({
 export const setUserProfile = (user) => ({
   type: CHANGE_USER_PROFILE,
   payload: user
+})
+
+export const setUserMessage = (message) => ({
+  type: CHANGE_USER_MESSAGE,
+  payload: message
 })

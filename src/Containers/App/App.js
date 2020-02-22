@@ -52,7 +52,7 @@ class App extends Component {
   onSignIn = () => {
     const { email, password } = this.props.signIn;
 
-    fetch('http://localhost:3001/login', {
+    fetch(process.env.REACT_APP_SERVER_URL + '/login', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -78,7 +78,7 @@ class App extends Component {
     const { name, email, password } = this.props.signUp;
 
     if(validateSignUp(this.props.signUp)) {
-      fetch('http://localhost:3001/register', {
+      fetch(process.env.REACT_APP_SERVER_URL + '/register', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

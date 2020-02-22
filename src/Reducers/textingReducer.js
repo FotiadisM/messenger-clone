@@ -1,7 +1,8 @@
 import {
   TEXTING_SET_USER,
   TEXTING_CONNECTED_USER,
-  TEXTING_LOAD_MESSAGES
+  TEXTING_LOAD_MESSAGES,
+  TEXTING_CLEAR_MESSAGES
 } from '../Actions/constants'
 
 const initialState = {
@@ -29,7 +30,12 @@ export const changeTextingInfo = (state = initialState, action = {}) => {
     case TEXTING_LOAD_MESSAGES:
       return {
         ...state,
-        messages: action.payload
+        messages: [...state.messages, action.payload]
+      }
+    case TEXTING_CLEAR_MESSAGES:
+      return {
+        ...state,
+        messages: []
       }
     default:
       return state; 

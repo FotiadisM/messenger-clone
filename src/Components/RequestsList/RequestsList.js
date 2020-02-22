@@ -15,7 +15,7 @@ const RequestsList = ({ requests, onAcceptRequest, onRejectRequest }) => {
     return (
       <div className='RequestsList'>
         {
-          requests.map((request, i) => {
+          requests.map((request) => {
             return (
               <Request key={request._id} request={request} onAcceptRequest={onAcceptRequest} onRejectRequest={onRejectRequest}/>
             );
