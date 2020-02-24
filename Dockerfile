@@ -1,17 +1,22 @@
-FROM tiangolo/node-frontend:10 as build-stage
+FROM node:10-alpine as builder
 
-WORKDIR /app
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
 
-COPY package*.json /app/
+RUN apk --no-cache add python make g++
 
-RUN npm install
+COPY package*.json ./
 
-COPY ./ /app/
+RUN npm install --only=production
 
-RUN npm run build
+FROM node:10-alpine
 
-FROM nginx:1.15
+WORKDIR /usr/src/app
 
-COPY --from=build-stage /app/build/ /usr/share/nginx/html
+COPY --from=builder node_modules node_modules
 
-COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
+COPY build .
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]
