@@ -1,6 +1,6 @@
 FROM node:10-alpine as builder
 
-ARG NODE_ENV=development
+ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
 RUN apk --no-cache add python make g++
@@ -15,8 +15,6 @@ WORKDIR /usr/src/app
 
 COPY --from=builder node_modules node_modules
 
-COPY build .
-
-EXPOSE 3000
+COPY . .
 
 CMD [ "npm", "start" ]

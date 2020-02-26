@@ -64,8 +64,14 @@ class Messenger extends Component {
             hooks: {
               onMessage: message => {
                 this.props.loadMessages(message);
+                var element = document.getElementById('ChatScreen-main-messaging');
+                element.scrollTop = element.scrollHeight;
               }
             }
+          })
+          .then(() => {
+            var element = document.getElementById('ChatScreen-main-messaging');
+            element.scrollTop = element.scrollHeight;
           })
           .catch(err => console.log(err))
         }

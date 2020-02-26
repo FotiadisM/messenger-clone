@@ -1,5 +1,5 @@
 import React from 'react';
-// import Message from '../Message/Message';
+import Message from '../Message/Message';
 import './MessageList.css'
 
 const MessageList = ({ messages }) => {
@@ -17,8 +17,9 @@ const MessageList = ({ messages }) => {
         {
           messages.map((message) => {
             return (
-              // <Message key={message.id} message={message}/>
-            <h1 key={message.id}>{message.parts[0].payload.content}</h1>
+              <div className='MessageList'>
+                <Message key={message.id} message={message}/>
+              </div>
             )
           })
         }

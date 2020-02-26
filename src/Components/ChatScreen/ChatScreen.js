@@ -27,7 +27,7 @@ const ChatScreen = ({ textingUser, addFriendMode, setUserMessage, onSendMessage 
           <div className='ChatScreen-user-name'>{textingUser.name}</div>
         </div>
         <div className='ChatScreen-main'>
-          <div className='ChatScreen-main-messaging'>
+          <div id='ChatScreen-main-messaging' className='ChatScreen-main-messaging'>
             <MessageList messages={textingUser.messages}/>
           </div>
           <div className='ChatScreen-main-sending'>

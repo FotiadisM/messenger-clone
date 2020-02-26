@@ -1,0 +1,11 @@
+.Message {
+    background-color: blue;
+    color: white;
+    display: inline-block;
+    max-width: 50rem;
+    padding: .5rem 1rem;
+    border-radius: 1.4rem;
+    margin: .7rem 2rem;
+    margin-left: 4.5rem;
+    font-size: 2.5rem;
+}

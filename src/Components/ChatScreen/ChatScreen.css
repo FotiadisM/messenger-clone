@@ -40,6 +40,8 @@
 .ChatScreen-main-messaging {
   height: 86%;
   border-bottom: .1rem solid gray;
+  padding-top: 2rem;
+  overflow-y: scroll;
 }
 
 .ChatScreen-main-sending {
